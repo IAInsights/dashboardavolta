@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#2b0820">
   <meta name="description" content="Club Avolta performance dashboard for Globe Travel Retail Switzerland.">
-  <meta name="supabase-url" content="https://qooytgsjjzvkqaumoqmw.supabase.co">
-  <meta name="supabase-publishable-key" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvb3l0Z3Nqanp2a3FhdW1vcW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUzNjM0ODMsImV4cCI6MjA0MDkzOTQ4M30.Oai2A8Qii0aOfD91NFwHsNq3Tgq1yFHwih-GRFnsEC0">
   <meta name="dashboard-function" content="https://qooytgsjjzvkqaumoqmw.supabase.co/functions/v1/club-avolta-dashboard-api">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b0820'/%3E%3Cpath d='M16 18h32v8H16zm0 14h23v7H16zm0 13h29v5H16z' fill='%23f3ad23'/%3E%3C/svg%3E">
   <title>Club Avolta · Performance Dashboard</title>
@@ -70,15 +68,15 @@
     .ghost-button,.soft-button { min-height:38px; padding:8px 12px; border:1px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); font-size:12px; font-weight:850; text-decoration:none; }
     .soft-button { border-color:transparent; background:#f0ebee; }
     .dashboard { width:min(1600px,100%); margin:auto; padding:clamp(18px,3vw,38px); }
-    .hero { display:flex; align-items:end; justify-content:space-between; gap:20px; margin:6px 0 22px; }
+    .hero { margin:6px 0 22px; }
     .eyebrow { margin:0 0 8px; color:var(--wine-2); font-size:12px; font-weight:950; letter-spacing:.2em; text-transform:uppercase; }
-    .hero h1 { margin:0; max-width:800px; font-size:clamp(34px,5vw,68px); line-height:.96; letter-spacing:-.065em; }
+    .hero h1 { margin:0; max-width:800px; font-size:clamp(30px,4vw,52px); line-height:1; letter-spacing:-.055em; }
     .hero-copy { max-width:430px; color:var(--muted); font-size:14px; line-height:1.6; }
     .live-pill { display:inline-flex; align-items:center; gap:7px; margin-bottom:12px; padding:7px 10px; border-radius:999px; background:#e9f7f1; color:var(--green); font-size:11px; font-weight:900; }
     .live-pill:before { content:""; width:7px; height:7px; border-radius:50%; background:#28a96f; box-shadow:0 0 0 4px rgba(40,169,111,.12); }
 
     .filter-panel { margin-bottom:18px; padding:16px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); }
-    .filter-grid { display:grid; grid-template-columns:repeat(7,minmax(125px,1fr)); gap:10px; align-items:end; }
+    .filter-grid { display:grid; grid-template-columns:minmax(190px,1fr) minmax(170px,1fr) minmax(320px,2fr); gap:10px; align-items:end; }
     .filter-grid label { min-width:0; }
     .filter-actions { display:flex; gap:8px; align-items:center; }
     .filter-actions button { flex:1; white-space:nowrap; }
@@ -213,63 +211,23 @@
 <body>
   <div class="boot" id="boot"><div><div class="spinner"></div><strong>Preparing your dashboard…</strong></div></div>
 
-  <section class="auth-page" id="authPage" hidden>
-    <form class="auth-card" id="loginForm">
-      <div class="auth-kicker">Globe Travel Retail</div>
-      <h1>Club Avolta<br>Dashboard</h1>
-      <p>Sign in with the shared account to explore live results and year-over-year performance.</p>
-      <div class="field-stack">
-        <label>Shared account<input id="loginEmail" type="email" value="ext01@globe-groupe.com" autocomplete="username" readonly></label>
-        <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required></label>
-        <button class="primary-button" id="loginButton" type="submit">Open dashboard</button>
-      </div>
-      <p class="auth-error" id="loginError" hidden></p>
-      <div class="globe-wordmark" aria-label="Globe Travel Retail">GL<span class="globe-dot"></span>BE</div>
-      <span class="globe-sub">TRAVEL RETAIL</span>
-    </form>
-  </section>
-
   <div id="dashboardPage" hidden>
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h11M4 18h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-        <div><strong>Club Avolta</strong><span>Performance intelligence</span></div>
-      </div>
-      <div class="top-actions">
-        <span class="account" id="accountEmail"></span>
-        <a class="ghost-button report-link" href="index.html">Field report</a>
-        <button class="soft-button" id="logoutButton" type="button">Log out</button>
-      </div>
-    </header>
-
     <main class="dashboard">
       <section class="hero">
-        <div>
-          <p class="eyebrow">Switzerland · Live reporting</p>
-          <h1>Performance, made clear.</h1>
-        </div>
-        <div class="hero-copy">
-          <span class="live-pill">Connected to Supabase</span>
-          <div>Track conversations, conversion and customer insights—then compare the same period across years.</div>
-        </div>
+        <h1>Club Avolta Report</h1>
       </section>
 
       <section class="filter-panel" aria-label="Dashboard filters">
         <div class="filter-grid">
-          <label>Year<select id="yearFilter"></select></label>
-          <label>Compare with<select id="compareYearFilter"></select></label>
-          <label>Period<select id="quarterFilter"><option value="all">All available</option><option value="1">Quarter 1</option><option value="2">Quarter 2</option><option value="3">Quarter 3</option><option value="4">Quarter 4</option><option value="custom">Custom dates</option></select></label>
-          <label>From<input id="dateFrom" type="date"></label>
-          <label>To<input id="dateTo" type="date"></label>
+          <label>Compare current YTD with<select id="compareYearFilter"></select></label>
           <label>Store<select id="storeFilter"><option value="">All stores</option><option value="48">Basel</option><option value="32465">Zurich L1</option><option value="32466">Zurich L2</option></select></label>
-          <label>Promoter<input id="promoterFilter" type="search" list="promoterOptions" placeholder="All promoters"><datalist id="promoterOptions"></datalist></label>
           <div class="filter-actions">
             <button class="soft-button" id="resetButton" type="button">Reset</button>
             <button class="soft-button" id="refreshButton" type="button">Refresh</button>
             <button class="ghost-button" id="exportButton" type="button">Export CSV</button>
           </div>
         </div>
-        <div class="sync-line"><span id="filterSummary">Loading records…</span><span id="syncStatus"></span></div>
+        <div class="sync-line"><span id="filterSummary">Loading records…</span></div>
       </section>
 
       <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
@@ -284,17 +242,17 @@
         </article>
 
         <article class="panel span-4">
-          <div class="panel-head"><div><h2>Conversion journey</h2><div class="panel-sub">How each interaction moves toward membership.</div></div></div>
+          <div class="panel-head"><div><h2>Conversion journey</h2><div class="panel-sub">Current YTD performance for the selected store.</div></div></div>
           <div class="rate-grid">
+            <div class="rate"><span>Transformation rate</span><strong id="transformationRate">—</strong></div>
             <div class="rate"><span>Stop rate</span><strong id="stopRate">—</strong></div>
-            <div class="rate"><span>Membership conversion</span><strong id="conversionRate">—</strong></div>
             <div class="rate"><span>Overall conversion</span><strong id="overallRate">—</strong></div>
           </div>
           <div class="funnel" id="funnel"></div>
         </article>
 
         <article class="panel span-7">
-          <div class="panel-head"><div><h2>Customer outcomes</h2><div class="panel-sub">Technical issues are shown inside registration denials, without double counting.</div></div></div>
+          <div class="panel-head"><div><h2>Breakdown of refusals</h2><div class="panel-sub">Registration denials, already members and technical issues.</div></div></div>
           <div class="stacked" id="outcomeBar"></div>
           <div class="breakdown-legend" id="outcomeLegend"></div>
         </article>
@@ -352,7 +310,7 @@
 
       <footer class="page-footer">
         <div>Club Avolta performance dashboard · Data from the ClubAvolta reporting table</div>
-        <div><span class="mini-wordmark">GL<em>●</em>BE</span> · Travel Retail</div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="live-pill" style="margin:0">Connected to database</span><span id="syncStatus"></span><span class="mini-wordmark">GL<em>●</em>BE</span> · Travel Retail</div>
       </footer>
     </main>
   </div>
@@ -362,28 +320,21 @@
 
   <script>
     "use strict";
-    var SUPABASE_URL = document.querySelector('meta[name="supabase-url"]').content.trim();
-    var PUBLISHABLE_KEY = document.querySelector('meta[name="supabase-publishable-key"]').content.trim();
     var DASHBOARD_URL = document.querySelector('meta[name="dashboard-function"]').content.trim();
-    var AUTH_KEY = "clubAvoltaAuthV1";
-    var currentSession = null;
     var allRows = [];
     var filteredRows = [];
     var comparisonRows = [];
+    var activePeriod = null;
     var commentLimit = 30;
     var resizeTimer = null;
     var numberFormat = new Intl.NumberFormat("en-CH", { maximumFractionDigits: 1 });
     var compactFormat = new Intl.NumberFormat("en-CH", { notation:"compact", maximumFractionDigits:1 });
     var dateFormat = new Intl.DateTimeFormat("en-GB", { day:"2-digit", month:"short", year:"numeric" });
     var metricDefinitions = [
-      {key:"interactions",label:"Interactions",color:"#4b0929",good:"up"},
-      {key:"pax_stopped",label:"Pax stopped",color:"#78163d",good:"up"},
       {key:"registrations",label:"New memberships",color:"#bd3d67",good:"up"},
       {key:"already_members",label:"Already members",color:"#6c5ce7",good:"neutral"},
       {key:"registration_denials",label:"Registration denials",color:"#ef8a35",good:"down"},
-      {key:"technical_issues",label:"Technical issues",color:"#bb3348",good:"down"},
-      {key:"app_downloads",label:"App downloads",color:"#168a83",good:"up"},
-      {key:"reports",label:"Reports",color:"#7b6d78",good:"up"}
+      {key:"technical_issues",label:"Technical issues",color:"#bb3348",good:"down"}
     ];
     var commentFields = [
       {key:"reasons_registration",label:"Registration reason"},
@@ -433,69 +384,8 @@
       };
     }
 
-    function readSession() {
-      for (var i=0;i<2;i++) {
-        var storage = i === 0 ? localStorage : sessionStorage;
-        try {
-          var session = JSON.parse(storage.getItem(AUTH_KEY) || "null");
-          if (session && (session.access_token || session.refresh_token)) return session;
-        } catch (_) {}
-      }
-      return null;
-    }
-    function storeSession(session) {
-      var serialized = JSON.stringify(session);
-      try { localStorage.setItem(AUTH_KEY,serialized); } catch (_) {}
-      try { sessionStorage.setItem(AUTH_KEY,serialized); } catch (_) {}
-    }
-    function clearSession() {
-      try { localStorage.removeItem(AUTH_KEY); } catch (_) {}
-      try { sessionStorage.removeItem(AUTH_KEY); } catch (_) {}
-      currentSession = null;
-    }
-    function saveSession(session) {
-      currentSession = {
-        access_token:session.access_token || (currentSession && currentSession.access_token) || "",
-        refresh_token:session.refresh_token || (currentSession && currentSession.refresh_token) || "",
-        expires_at:session.expires_at || Math.floor(Date.now()/1000) + Number(session.expires_in || 3600),
-        user:session.user || (currentSession && currentSession.user) || null
-      };
-      storeSession(currentSession);
-      return currentSession;
-    }
-    async function authRequest(path,body) {
-      var response = await fetch(SUPABASE_URL + path,{method:"POST",headers:{"apikey":PUBLISHABLE_KEY,"Content-Type":"application/json"},body:JSON.stringify(body),cache:"no-store"});
-      var data = await response.json().catch(function(){ return {}; });
-      if (!response.ok) {
-        var error = new Error(data.error_description || data.msg || data.message || "Unable to sign in.");
-        error.status=response.status; throw error;
-      }
-      return data;
-    }
-    async function refreshSession(force) {
-      currentSession = currentSession || readSession();
-      if (!currentSession || !currentSession.refresh_token) throw new Error("Please sign in to continue.");
-      if (!force && currentSession.access_token && Number(currentSession.expires_at || 0) > Math.floor(Date.now()/1000)+60) return currentSession;
-      return saveSession(await authRequest("/auth/v1/token?grant_type=refresh_token",{refresh_token:currentSession.refresh_token}));
-    }
-    async function dashboardFetch(retry) {
-      var session = await refreshSession(false);
-      var response = await fetch(DASHBOARD_URL,{headers:{"apikey":PUBLISHABLE_KEY,"Authorization":"Bearer "+session.access_token},cache:"no-store"});
-      if (response.status===401 && retry!==false) {
-        await refreshSession(true);
-        return dashboardFetch(false);
-      }
-      return response;
-    }
-    function showLogin(message) {
-      qs("boot").hidden=true; qs("dashboardPage").hidden=true; qs("authPage").hidden=false; qs("loadingLayer").hidden=true;
-      qs("loginError").textContent=message || ""; qs("loginError").hidden=!message; qs("loginPassword").value="";
-    }
-    async function logout() {
-      var token=currentSession && currentSession.access_token;
-      clearSession();
-      if (token) fetch(SUPABASE_URL+"/auth/v1/logout",{method:"POST",headers:{"apikey":PUBLISHABLE_KEY,"Authorization":"Bearer "+token}}).catch(function(){});
-      showLogin("");
+    async function dashboardFetch() {
+      return fetch(DASHBOARD_URL,{cache:"no-store"});
     }
     function showToast(message) {
       var toast=qs("toast"); toast.textContent=message; toast.hidden=false;
@@ -506,10 +396,9 @@
     async function loadData() {
       setLoading(true,"Loading live dashboard data…");
       try {
-        var response=await dashboardFetch(true);
+        var response=await dashboardFetch();
         var data=await response.json().catch(function(){return {};});
         if(!response.ok) {
-          if(response.status===401){ clearSession(); showLogin(data.error || "Please sign in again."); return; }
           throw new Error(data.error || "Dashboard data could not be loaded.");
         }
         allRows=(data.rows || []).map(normalizeRow).filter(function(row){return row.activity_date;});
@@ -534,36 +423,14 @@
     }
     function buildFilters() {
       var years=availableYears();
-      var current=Number(qs("yearFilter").value) || years[0];
-      fillSelect(qs("yearFilter"),years.map(function(y){return {value:y,label:String(y)};}),current);
-      updateComparisonYears();
-      var promoters=Array.from(new Set(allRows.map(function(row){return row.source_promoter;}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b);});
-      qs("promoterOptions").textContent="";
-      promoters.forEach(function(name){var option=document.createElement("option");option.value=name;qs("promoterOptions").appendChild(option);});
-      resetPeriodForYear();
-    }
-    function updateComparisonYears() {
-      var years=availableYears(); var selected=Number(qs("yearFilter").value);
-      var currentCompare=Number(qs("compareYearFilter").value);
-      var preferred=years.indexOf(selected)>-1 && years[years.indexOf(selected)+1] || years.find(function(y){return y!==selected;});
-      if(years.indexOf(currentCompare)<0 || currentCompare===selected) currentCompare=preferred;
-      fillSelect(qs("compareYearFilter"),years.filter(function(y){return y!==selected;}).map(function(y){return {value:y,label:String(y)};}),currentCompare);
+      var current=years[0];
+      var pastYears=years.filter(function(year){return year<current;});
+      var selected=Number(qs("compareYearFilter").value) || pastYears[0];
+      fillSelect(qs("compareYearFilter"),pastYears.map(function(year){return {value:year,label:String(year)+" YTD"};}),selected);
     }
     function yearBounds(year) {
       var dates=allRows.filter(function(row){return Number(row.activity_date.slice(0,4))===year;}).map(function(row){return row.activity_date;}).sort();
       return {min:dates[0] || year+"-01-01",max:dates[dates.length-1] || year+"-12-31"};
-    }
-    function resetPeriodForYear() {
-      var year=Number(qs("yearFilter").value); var bounds=yearBounds(year);
-      qs("quarterFilter").value="all"; qs("dateFrom").value=bounds.min; qs("dateTo").value=bounds.max;
-    }
-    function setQuarterDates() {
-      var quarter=qs("quarterFilter").value; if(quarter==="custom") return;
-      var year=Number(qs("yearFilter").value); var bounds=yearBounds(year);
-      if(quarter==="all"){qs("dateFrom").value=bounds.min;qs("dateTo").value=bounds.max;return;}
-      var q=Number(quarter); var start=new Date(year,(q-1)*3,1); var end=new Date(year,q*3,0);
-      var from=isoDate(start),to=isoDate(end);
-      qs("dateFrom").value=from<bounds.min?bounds.min:from; qs("dateTo").value=to>bounds.max?bounds.max:to;
     }
     function mappedDate(year,sourceIso) {
       var parts=sourceIso.split("-").map(Number); var candidate=new Date(year,parts[1]-1,parts[2]);
@@ -571,16 +438,16 @@
       return isoDate(candidate);
     }
     function applyFilters() {
-      var year=Number(qs("yearFilter").value); var compareYear=Number(qs("compareYearFilter").value);
-      var from=qs("dateFrom").value || year+"-01-01"; var to=qs("dateTo").value || year+"-12-31";
-      if(from>to){var temp=from;from=to;to=temp;qs("dateFrom").value=from;qs("dateTo").value=to;}
+      var years=availableYears(); var year=years[0]; var compareYear=Number(qs("compareYearFilter").value);
+      var from=year+"-01-01"; var to=yearBounds(year).max;
       var compareFrom=mappedDate(compareYear,from),compareTo=mappedDate(compareYear,to);
-      var store=qs("storeFilter").value; var promoter=clean(qs("promoterFilter").value).toLocaleLowerCase();
-      function common(row){return (!store || row.store_id===store) && (!promoter || row.source_promoter.toLocaleLowerCase().indexOf(promoter)>-1);}
+      var store=qs("storeFilter").value;
+      function common(row){return !store || row.store_id===store;}
       filteredRows=allRows.filter(function(row){return row.activity_date>=from && row.activity_date<=to && common(row);});
       comparisonRows=allRows.filter(function(row){return row.activity_date>=compareFrom && row.activity_date<=compareTo && common(row);});
-      qs("filterSummary").innerHTML="<strong>"+formatNumber(filteredRows.length)+" reports</strong> · "+displayDate(from)+" to "+displayDate(to)+" · compared with "+compareYear;
-      qs("currentLegend").textContent=String(year); qs("compareLegend").textContent=String(compareYear);
+      activePeriod={from:from,to:to,compareFrom:compareFrom,compareTo:compareTo,currentYear:year,compareYear:compareYear};
+      qs("filterSummary").innerHTML="<strong>"+year+" YTD</strong> · "+displayDate(from)+" to "+displayDate(to)+" · "+formatNumber(filteredRows.length)+" reports · compared with "+compareYear+" YTD";
+      qs("currentLegend").textContent=String(year)+" YTD"; qs("compareLegend").textContent=String(compareYear)+" YTD";
       commentLimit=30;
       renderAll(from,to,compareFrom,compareTo);
     }
@@ -615,8 +482,8 @@
     }
     function renderConversion() {
       var t=totals(filteredRows);
+      qs("transformationRate").textContent=formatPercent(safeRate(t.registrations,t.pax_stopped-t.already_members));
       qs("stopRate").textContent=formatPercent(safeRate(t.pax_stopped,t.interactions));
-      qs("conversionRate").textContent=formatPercent(safeRate(t.registrations,t.pax_stopped));
       qs("overallRate").textContent=formatPercent(safeRate(t.registrations,t.interactions));
       var items=[["Interactions",t.interactions],["Pax stopped",t.pax_stopped],["Memberships",t.registrations]];
       var max=Math.max(1,t.interactions);var funnel=qs("funnel");funnel.textContent="";
@@ -630,13 +497,11 @@
       });
     }
     function renderOutcomes() {
-      var t=totals(filteredRows);var technical=Math.min(t.technical_issues,t.registration_denials);
-      var otherDenials=Math.max(0,t.registration_denials-technical);
+      var t=totals(filteredRows);
       var items=[
-        {label:"New memberships",value:t.registrations,color:"#4b0929"},
+        {label:"Registration denials",value:t.registration_denials,color:"#4b0929"},
         {label:"Already members",value:t.already_members,color:"#6c5ce7"},
-        {label:"Technical issues",value:technical,color:"#bb3348"},
-        {label:"Other denials",value:otherDenials,color:"#f2aa20"}
+        {label:"Technical issues",value:t.technical_issues,color:"#f2aa20"}
       ];
       var total=items.reduce(function(s,x){return s+x.value;},0)||1;var bar=qs("outcomeBar"),legend=qs("outcomeLegend");bar.textContent="";legend.textContent="";
       items.forEach(function(item){
@@ -771,47 +636,31 @@
       renderCharts(from,to,compareFrom,compareTo);renderComments();
     }
     function rerenderCharts() {
-      if(!filteredRows && !comparisonRows)return;
-      renderCharts(qs("dateFrom").value,qs("dateTo").value,mappedDate(Number(qs("compareYearFilter").value),qs("dateFrom").value),mappedDate(Number(qs("compareYearFilter").value),qs("dateTo").value));
+      if(!activePeriod)return;
+      renderCharts(activePeriod.from,activePeriod.to,activePeriod.compareFrom,activePeriod.compareTo);
     }
     function csvCell(value) { var text=Array.isArray(value)?value.join(" | "):String(value==null?"":value);return '"'+text.replace(/"/g,'""')+'"'; }
     function exportCsv() {
       var fields=["activity_date","source_promoter","store_id","source_store","interactions","pax_stopped","registrations","already_members","registration_denials","technical_issues","app_downloads","traffic_density","male_customers","age_groups","nationalities","destinations","reasons_registration","reasons_denial","comments_about_app","other_issues"];
       var lines=[fields.map(csvCell).join(",")].concat(filteredRows.map(function(row){return fields.map(function(field){return csvCell(row[field]);}).join(",");}));
       var blob=new Blob(["\ufeff"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"});var url=URL.createObjectURL(blob);var link=document.createElement("a");
-      link.href=url;link.download="club-avolta-dashboard-"+qs("yearFilter").value+".csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+      link.href=url;link.download="club-avolta-dashboard-"+(activePeriod?activePeriod.currentYear:"ytd")+"-ytd.csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
     }
 
-    qs("loginForm").addEventListener("submit",async function(event){
-      event.preventDefault();var button=qs("loginButton");button.disabled=true;button.textContent="Signing in…";qs("loginError").hidden=true;
-      try {
-        var session=await authRequest("/auth/v1/token?grant_type=password",{email:"ext01@globe-groupe.com",password:qs("loginPassword").value});
-        saveSession(session);qs("authPage").hidden=true;qs("dashboardPage").hidden=false;qs("accountEmail").textContent=currentSession.user && currentSession.user.email || "";
-        await loadData();
-      } catch(error){qs("loginError").textContent=error.message || "Unable to sign in.";qs("loginError").hidden=false;}
-      finally{button.disabled=false;button.textContent="Open dashboard";}
-    });
-    qs("logoutButton").addEventListener("click",logout);
     qs("refreshButton").addEventListener("click",loadData);
     qs("exportButton").addEventListener("click",exportCsv);
-    qs("resetButton").addEventListener("click",function(){qs("storeFilter").value="";qs("promoterFilter").value="";resetPeriodForYear();applyFilters();});
-    qs("yearFilter").addEventListener("change",function(){updateComparisonYears();resetPeriodForYear();applyFilters();});
+    qs("resetButton").addEventListener("click",function(){qs("storeFilter").value="";buildFilters();applyFilters();});
     qs("compareYearFilter").addEventListener("change",applyFilters);
-    qs("quarterFilter").addEventListener("change",function(){setQuarterDates();applyFilters();});
-    ["dateFrom","dateTo"].forEach(function(id){qs(id).addEventListener("change",function(){qs("quarterFilter").value="custom";applyFilters();});});
-    ["storeFilter","promoterFilter"].forEach(function(id){qs(id).addEventListener(id==="promoterFilter"?"input":"change",applyFilters);});
+    qs("storeFilter").addEventListener("change",applyFilters);
     qs("commentSearch").addEventListener("input",function(){commentLimit=30;renderComments();});
     qs("commentCategory").addEventListener("change",function(){commentLimit=30;renderComments();});
     qs("loadMoreButton").addEventListener("click",function(){commentLimit+=30;renderComments();});
     window.addEventListener("resize",function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(rerenderCharts,130);});
 
     (async function start(){
-      currentSession=readSession();
-      if(!currentSession){showLogin("");return;}
-      try {
-        await refreshSession(false);qs("boot").hidden=true;qs("dashboardPage").hidden=false;qs("accountEmail").textContent=currentSession.user && currentSession.user.email || "ext01@globe-groupe.com";
-        await loadData();
-      } catch(error){clearSession();showLogin("Please sign in to open the dashboard.");}
+      qs("boot").hidden=true;
+      qs("dashboardPage").hidden=false;
+      await loadData();
     })();
   </script>
 </body>
