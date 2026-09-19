@@ -27,6 +27,7 @@
       --red:#bb3348;
       --shadow:0 18px 55px rgba(53,15,39,.09);
       --radius:22px;
+      --radius:18px;
     }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -49,6 +50,7 @@
     .auth-card p { margin:0 0 28px; color:var(--muted); line-height:1.6; }
     label { display:block; color:#4f4350; font-size:12px; font-weight:850; letter-spacing:.02em; }
     input,select { width:100%; min-height:44px; margin-top:7px; padding:10px 12px; border:1px solid #ded6dd; border-radius:12px; background:#fff; color:var(--ink); outline:none; }
+    input,select { width:100%; min-height:40px; margin-top:5px; padding:8px 10px; border:1px solid #ded6dd; border-radius:11px; background:#fff; color:var(--ink); outline:none; }
     input:focus,select:focus { border-color:var(--wine-2); box-shadow:0 0 0 3px rgba(120,22,61,.1); }
     .field-stack { display:grid; gap:16px; }
     .primary-button { min-height:48px; border:0; border-radius:13px; background:linear-gradient(135deg,var(--wine),var(--wine-2)); color:#fff; font-weight:900; box-shadow:0 12px 28px rgba(75,9,41,.22); }
@@ -69,41 +71,58 @@
     .soft-button { border-color:transparent; background:#f0ebee; }
     .dashboard { width:min(1600px,100%); margin:auto; padding:clamp(18px,3vw,38px); }
     .hero { margin:6px 0 22px; }
+    .dashboard { width:min(1600px,100%); margin:auto; padding:clamp(14px,2vw,26px); }
+    .sticky-dashboard-header { position:sticky; top:0; z-index:45; display:grid; grid-template-columns:minmax(210px,.72fr) minmax(0,4fr); gap:14px; align-items:center; margin:0 0 12px; padding:12px; border:1px solid rgba(75,9,41,.1); border-radius:var(--radius); background:rgba(255,255,255,.96); box-shadow:0 14px 38px rgba(53,15,39,.12); backdrop-filter:blur(18px); }
+    .hero { margin:0; }
     .eyebrow { margin:0 0 8px; color:var(--wine-2); font-size:12px; font-weight:950; letter-spacing:.2em; text-transform:uppercase; }
     .hero h1 { margin:0; max-width:800px; font-size:clamp(30px,4vw,52px); line-height:1; letter-spacing:-.055em; }
+    .hero h1 { margin:0; font-size:clamp(22px,1.8vw,28px); line-height:1; letter-spacing:-.05em; white-space:nowrap; }
     .hero-copy { max-width:430px; color:var(--muted); font-size:14px; line-height:1.6; }
     .live-pill { display:inline-flex; align-items:center; gap:7px; margin-bottom:12px; padding:7px 10px; border-radius:999px; background:#e9f7f1; color:var(--green); font-size:11px; font-weight:900; }
     .live-pill:before { content:""; width:7px; height:7px; border-radius:50%; background:#28a96f; box-shadow:0 0 0 4px rgba(40,169,111,.12); }
 
     .filter-panel { margin-bottom:18px; padding:16px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); }
     .filter-grid { display:grid; grid-template-columns:minmax(180px,1fr) minmax(145px,1fr) minmax(145px,1fr) minmax(160px,1fr) minmax(300px,1.7fr); gap:10px; align-items:end; }
+    .filter-panel { min-width:0; margin:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+    .filter-grid { display:grid; grid-template-columns:minmax(90px,.65fr) minmax(118px,.9fr) minmax(118px,.9fr) minmax(125px,1fr) minmax(235px,1.55fr); gap:8px; align-items:end; }
     .filter-grid label { min-width:0; }
     .filter-actions { display:flex; gap:8px; align-items:center; }
     .filter-actions button { flex:1; white-space:nowrap; }
     .sync-line { display:flex; justify-content:space-between; gap:12px; margin-top:12px; color:var(--muted); font-size:12px; }
+    .sync-line { display:flex; justify-content:space-between; gap:12px; margin-top:8px; color:var(--muted); font-size:12px; }
     .sync-line strong { color:var(--ink); }
 
     .kpi-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0; }
     .kpi-card { position:relative; overflow:hidden; min-height:142px; padding:18px; border:1px solid var(--line); border-radius:19px; background:var(--paper); box-shadow:0 10px 35px rgba(48,20,38,.055); }
+    .kpi-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:12px 0; }
+    .kpi-card { position:relative; overflow:hidden; min-height:118px; padding:15px; border:1px solid var(--line); border-radius:16px; background:var(--paper); box-shadow:0 10px 35px rgba(48,20,38,.055); }
     .kpi-card:before { content:""; position:absolute; inset:0 auto 0 0; width:4px; background:var(--card-color,var(--wine-2)); }
     .kpi-label { color:var(--muted); font-size:12px; font-weight:850; text-transform:uppercase; letter-spacing:.07em; }
     .kpi-value { margin:12px 0 8px; font-size:clamp(28px,3.4vw,47px); line-height:1; font-weight:950; letter-spacing:-.05em; }
     .kpi-foot { display:flex; align-items:center; justify-content:space-between; gap:8px; color:var(--muted); font-size:11px; }
     .change { padding:5px 7px; border-radius:999px; font-weight:900; }
+    .kpi-value { margin:9px 0 7px; font-size:clamp(27px,3vw,40px); line-height:1; font-weight:950; letter-spacing:-.05em; }
+    .kpi-foot { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:6px 8px; color:var(--muted); font-size:11px; line-height:1.35; }
+    .kpi-foot > span:first-child { min-width:0; }
+    .change { padding:5px 7px; border-radius:999px; font-weight:900; white-space:nowrap; }
     .change.good { background:#eaf7f0; color:var(--green); }
     .change.bad { background:#fff0f2; color:var(--red); }
     .change.neutral { background:#f2eef1; color:#655864; }
 
     .grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:12px; margin-bottom:12px; }
     .panel { min-width:0; padding:18px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:0 10px 35px rgba(48,20,38,.05); }
+    .grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:10px; margin-bottom:10px; }
+    .panel { min-width:0; padding:15px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:0 10px 35px rgba(48,20,38,.05); }
     .span-8 { grid-column:span 8; } .span-7 { grid-column:span 7; } .span-6 { grid-column:span 6; }
     .span-5 { grid-column:span 5; } .span-4 { grid-column:span 4; }
     .panel-head { display:flex; align-items:start; justify-content:space-between; gap:12px; margin-bottom:15px; }
+    .panel-head { display:flex; align-items:start; justify-content:space-between; gap:12px; margin-bottom:11px; }
     .panel h2 { margin:0; font-size:16px; letter-spacing:-.02em; }
     .panel-sub { margin-top:4px; color:var(--muted); font-size:11px; line-height:1.45; }
     .legend { display:flex; align-items:center; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:10px; }
     .legend i { display:inline-block; width:8px; height:8px; margin-right:4px; border-radius:50%; }
     .chart-wrap { position:relative; height:310px; }
+    .chart-wrap { position:relative; height:250px; }
     canvas { width:100%; height:100%; display:block; }
 
     .rate-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
@@ -113,12 +132,16 @@
     .funnel { display:grid; gap:13px; margin-top:18px; }
     .funnel-row { display:grid; grid-template-columns:115px 1fr 125px; gap:10px; align-items:center; font-size:12px; }
     .funnel-track { height:28px; overflow:hidden; border-radius:8px; background:#f1edef; }
+    .funnel { display:grid; gap:10px; margin-top:12px; }
+    .funnel-row { display:grid; grid-template-columns:105px 1fr 125px; gap:8px; align-items:center; font-size:12px; }
+    .funnel-track { height:24px; overflow:hidden; border-radius:7px; background:#f1edef; }
     .funnel-fill { height:100%; min-width:3px; border-radius:8px; background:var(--wine); transition:width .35s ease; }
     .funnel-row:nth-child(2) .funnel-fill { background:var(--wine-2); }
     .funnel-row:nth-child(3) .funnel-fill { background:var(--amber); }
     .funnel-value { text-align:right; font-weight:900; }
 
     .stacked { display:flex; height:44px; overflow:hidden; margin:20px 0 14px; border-radius:12px; background:#f2edef; }
+    .stacked { display:flex; height:38px; overflow:hidden; margin:14px 0 11px; border-radius:10px; background:#f2edef; }
     .stacked-segment { display:grid; place-items:center; min-width:0; color:#fff; font-size:10px; font-weight:900; transition:width .35s ease; }
     .breakdown-legend { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
     .legend-item { display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:11px; }
@@ -127,30 +150,44 @@
     .donut-layout { display:grid; grid-template-columns:160px 1fr; gap:20px; align-items:center; }
     .donut { width:150px; height:150px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--wine) 0 var(--female), var(--amber) var(--female) 100%); }
     .donut:after { content:""; width:86px; height:86px; border-radius:50%; background:#fff; }
+    .donut-layout { display:grid; grid-template-columns:135px 1fr; gap:14px; align-items:center; }
+    .donut { width:126px; height:126px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--wine) 0 var(--female), var(--amber) var(--female) 100%); }
+    .donut:after { content:""; width:72px; height:72px; border-radius:50%; background:#fff; }
     .donut-center { position:absolute; text-align:center; }
     .donut-wrap { position:relative; display:grid; place-items:center; }
     .donut-center strong { display:block; font-size:25px; }
+    .donut-center strong { display:block; font-size:22px; }
     .donut-center span { color:var(--muted); font-size:10px; }
     .gender-stats { display:grid; gap:10px; }
     .gender-stat { padding:11px 12px; border-radius:12px; background:#f7f4f6; }
     .gender-stat strong { font-size:22px; }
+    .gender-stats { display:grid; gap:8px; }
+    .gender-stat { padding:9px 11px; border-radius:11px; background:#f7f4f6; }
+    .gender-stat strong { font-size:20px; }
 
     .hbars { display:grid; gap:10px; }
+    .hbars { display:grid; gap:8px; }
     .hbar { display:grid; grid-template-columns:minmax(75px,125px) 1fr 52px; align-items:center; gap:9px; font-size:11px; }
     .hbar-label { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .hbar-track { height:11px; overflow:hidden; border-radius:999px; background:#eee8ec; }
     .hbar-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,var(--wine-2),var(--rose)); }
     .hbar-value { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
     .age-bar { display:flex; height:46px; overflow:hidden; border-radius:12px; background:#f0ebee; }
+    .age-bar { display:flex; height:40px; overflow:hidden; border-radius:10px; background:#f0ebee; }
     .age-segment { display:grid; place-items:center; min-width:0; color:#fff; font-size:10px; font-weight:900; }
     .age-legend { display:flex; flex-wrap:wrap; gap:9px 14px; margin-top:14px; color:var(--muted); font-size:10px; }
+    .age-legend { display:flex; flex-wrap:wrap; gap:8px 12px; margin-top:10px; color:var(--muted); font-size:10px; }
 
     .comments-panel { padding:0; overflow:hidden; }
     .comments-head { padding:20px; border-bottom:1px solid var(--line); }
     .comments-tools { display:grid; grid-template-columns:1fr 220px; gap:10px; margin-top:14px; }
+    .comments-head { padding:16px; border-bottom:1px solid var(--line); }
+    .comments-tools { display:grid; grid-template-columns:1fr 210px; gap:8px; margin-top:10px; }
     .comments-tools input,.comments-tools select { margin:0; }
     .comments-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; padding:14px; }
     .comment-card { padding:16px; border:1px solid var(--line); border-radius:16px; background:#fcfbfb; }
+    .comments-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding:10px; }
+    .comment-card { padding:13px; border:1px solid var(--line); border-radius:14px; background:#fcfbfb; }
     .comment-meta { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:12px; color:var(--muted); font-size:10px; }
     .comment-meta span { padding:4px 7px; border-radius:999px; background:#f0ecef; }
     .comment-field + .comment-field { margin-top:12px; padding-top:12px; border-top:1px solid #eee8ec; }
@@ -160,6 +197,7 @@
     .empty-state { grid-column:1/-1; padding:38px; color:var(--muted); text-align:center; }
 
     .page-footer { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:24px 4px 4px; color:var(--muted); font-size:11px; }
+    .page-footer { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 4px 4px; color:var(--muted); font-size:11px; }
     .mini-wordmark { color:#1e191d; font-size:14px; font-weight:950; letter-spacing:.05em; }
     .mini-wordmark em { color:#cb0d61; font-style:normal; }
     .toast { position:fixed; right:20px; bottom:20px; z-index:80; max-width:390px; padding:14px 16px; border-radius:14px; background:#21121c; color:#fff; box-shadow:0 18px 55px rgba(0,0,0,.22); font-size:12px; line-height:1.5; }
@@ -167,7 +205,10 @@
     .loading-card { min-width:220px; padding:25px; border-radius:20px; background:#fff; text-align:center; box-shadow:var(--shadow); }
 
     @media (max-width:1200px) {
+      .sticky-dashboard-header { grid-template-columns:minmax(190px,.65fr) minmax(0,3fr); }
       .filter-grid { grid-template-columns:repeat(4,minmax(130px,1fr)); }
+      .filter-grid { grid-template-columns:repeat(4,minmax(105px,1fr)); }
+      .filter-actions { grid-column:1/-1; }
       .kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .span-8,.span-7 { grid-column:span 12; }
       .span-5,.span-4 { grid-column:span 6; }
@@ -176,7 +217,9 @@
       .topbar { padding:10px 14px; }
       .account,.report-link { display:none; }
       .dashboard { padding:18px 12px 28px; }
+      .sticky-dashboard-header { top:0; grid-template-columns:1fr; gap:10px; padding:10px; border-radius:0 0 16px 16px; }
       .hero { display:block; }
+      .hero h1 { font-size:26px; }
       .hero-copy { margin-top:15px; }
       .filter-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .filter-actions { grid-column:1/-1; }
@@ -187,6 +230,7 @@
       .comments-list { grid-template-columns:1fr; }
       .comments-tools { grid-template-columns:1fr; }
       .chart-wrap { height:260px; }
+      .chart-wrap { height:220px; }
       .donut-layout { grid-template-columns:1fr; }
       .donut-wrap { justify-self:center; }
       .page-footer { align-items:flex-start; flex-direction:column; }
@@ -213,9 +257,13 @@
 
   <div id="dashboardPage" hidden>
     <main class="dashboard">
+      <header class="sticky-dashboard-header">
       <section class="hero">
         <h1>Club Avolta Report</h1>
       </section>
+        <section class="hero">
+          <h1>Club Avolta Report</h1>
+        </section>
 
       <section class="filter-panel" aria-label="Dashboard filters">
         <div class="filter-grid">
@@ -227,10 +275,24 @@
             <button class="soft-button" id="resetButton" type="button">Reset</button>
             <button class="soft-button" id="refreshButton" type="button">Refresh</button>
             <button class="ghost-button" id="exportButton" type="button">Export CSV</button>
+        <section class="filter-panel" aria-label="Dashboard filters">
+          <div class="filter-grid">
+            <label>Year<select id="yearFilter"></select></label>
+            <label>From<input id="dateFrom" type="date"></label>
+            <label>To<input id="dateTo" type="date"></label>
+            <label>Store<select id="storeFilter"><option value="">All stores</option><option value="48">Basel</option><option value="32465">Zurich L1</option><option value="32466">Zurich L2</option></select></label>
+            <div class="filter-actions">
+              <button class="soft-button" id="resetButton" type="button">Reset</button>
+              <button class="soft-button" id="refreshButton" type="button">Refresh</button>
+              <button class="ghost-button" id="exportButton" type="button">Export CSV</button>
+            </div>
           </div>
         </div>
         <div class="sync-line"><span id="filterSummary">Loading records…</span></div>
       </section>
+          <div class="sync-line"><span id="filterSummary">Loading records…</span></div>
+        </section>
+      </header>
 
       <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
 
@@ -239,6 +301,8 @@
           <div class="panel-head">
             <div><h2>Daily performance</h2><div class="panel-sub">Interactions over the selected period, aligned with the comparison year.</div></div>
             <div class="legend"><span><i style="background:#4b0929"></i><span id="currentLegend"></span></span><span><i style="background:#f2aa20"></i><span id="compareLegend"></span></span></div>
+            <div><h2>Daily performance</h2><div class="panel-sub">Selected year versus the previous year.</div></div>
+            <div class="legend"><span><i style="background:#4b0929"></i><span id="currentLegend"></span></span><span id="compareLegendItem"><i style="background:#f2aa20"></i><span id="compareLegend"></span></span></div>
           </div>
           <div class="chart-wrap"><canvas id="trendChart" role="img" aria-label="Daily interactions trend"></canvas></div>
         </article>
@@ -257,6 +321,8 @@
         <article class="panel span-5">
           <div class="panel-head"><div><h2>Traffic density</h2><div class="panel-sub">Average field estimate from 0 to 100.</div></div><strong id="trafficAverage">—</strong></div>
           <div class="chart-wrap" style="height:180px"><canvas id="trafficChart" role="img" aria-label="Traffic density trend"></canvas></div>
+          <div class="panel-head"><div><h2>Traffic density</h2><div class="panel-sub">Quiet → Peak.</div></div><strong id="trafficAverage">—</strong></div>
+          <div class="chart-wrap" style="height:150px"><canvas id="trafficChart" role="img" aria-label="Traffic density from quiet to peak"></canvas></div>
         </article>
 
         <article class="panel span-4">
@@ -292,6 +358,7 @@
           </div>
           <div class="comments-tools">
             <input id="commentSearch" type="search" placeholder="Search comments, promoter or store…">
+            <input id="commentSearch" type="search" placeholder="Search comments or store…">
             <select id="commentCategory">
               <option value="all">All text categories</option>
               <option value="reasons_registration">Registration reasons</option>
@@ -429,6 +496,10 @@
       [qs("dateFrom"),qs("dateTo")].forEach(function(input){input.min=minimum;input.max=maximum;});
       if(!qs("dateFrom").value || qs("dateFrom").value.slice(0,4)!==String(current)) qs("dateFrom").value=minimum;
       if(!qs("dateTo").value || qs("dateTo").value.slice(0,4)!==String(current) || qs("dateTo").value>maximum) qs("dateTo").value=maximum;
+      var requested=Number(qs("yearFilter").value);
+      var selected=years.indexOf(requested)>-1?requested:years[0];
+      fillSelect(qs("yearFilter"),years.map(function(year){return {value:year,label:String(year)};}),selected);
+      configureDateInputs(selected,Boolean(qs("dateFrom").value&&qs("dateTo").value));
     }
     function yearBounds(year) {
       var dates=allRows.filter(function(row){return Number(row.activity_date.slice(0,4))===year;}).map(function(row){return row.activity_date;}).sort();
@@ -439,20 +510,45 @@
       if(candidate.getMonth()!==parts[1]-1) candidate=new Date(year,parts[1],0);
       return isoDate(candidate);
     }
+    function configureDateInputs(year,preserveMonthDay) {
+      var bounds=yearBounds(year),minimum=year+"-01-01",maximum=bounds.max;
+      var previousFrom=qs("dateFrom").value,previousTo=qs("dateTo").value;
+      var from=preserveMonthDay&&previousFrom?mappedDate(year,previousFrom):minimum;
+      var to=preserveMonthDay&&previousTo?mappedDate(year,previousTo):maximum;
+      from=from<minimum?minimum:from>maximum?maximum:from;
+      to=to<minimum?minimum:to>maximum?maximum:to;
+      if(from>to){var swap=from;from=to;to=swap;}
+      [qs("dateFrom"),qs("dateTo")].forEach(function(input){input.min=minimum;input.max=maximum;});
+      qs("dateFrom").value=from;qs("dateTo").value=to;
+    }
     function applyFilters() {
       var years=availableYears(); var year=years[0]; var compareYear=Number(qs("compareYearFilter").value);
       var bounds=yearBounds(year);var from=qs("dateFrom").value || year+"-01-01";var to=qs("dateTo").value || bounds.max;
       from=from<year+"-01-01"?year+"-01-01":from;to=to>bounds.max?bounds.max:to;
+      var years=availableYears();var year=Number(qs("yearFilter").value)||years[0];
+      var yearIndex=years.indexOf(year);var compareYear=yearIndex>-1&&yearIndex<years.length-1?years[yearIndex+1]:null;
+      var bounds=yearBounds(year),minimum=year+"-01-01";
+      var from=qs("dateFrom").value || minimum;var to=qs("dateTo").value || bounds.max;
+      if(from.slice(0,4)!==String(year))from=mappedDate(year,from);
+      if(to.slice(0,4)!==String(year))to=mappedDate(year,to);
+      from=from<minimum?minimum:from>bounds.max?bounds.max:from;
+      to=to<minimum?minimum:to>bounds.max?bounds.max:to;
       if(from>to){var swap=from;from=to;to=swap;qs("dateFrom").value=from;qs("dateTo").value=to;}
       var compareFrom=mappedDate(compareYear,from),compareTo=mappedDate(compareYear,to);
+      qs("dateFrom").value=from;qs("dateTo").value=to;
+      var compareFrom=compareYear?mappedDate(compareYear,from):null,compareTo=compareYear?mappedDate(compareYear,to):null;
       var store=qs("storeFilter").value;
       function common(row){return !store || row.store_id===store;}
       filteredRows=allRows.filter(function(row){return row.activity_date>=from && row.activity_date<=to && common(row);});
       comparisonRows=allRows.filter(function(row){return row.activity_date>=compareFrom && row.activity_date<=compareTo && common(row);});
       allYearsPeriodRows=allRows.filter(function(row){var rowYear=Number(row.activity_date.slice(0,4));return row.activity_date>=mappedDate(rowYear,from)&&row.activity_date<=mappedDate(rowYear,to)&&common(row);});
+      comparisonRows=compareYear?allRows.filter(function(row){return row.activity_date>=compareFrom && row.activity_date<=compareTo && common(row);}):[];
+      allYearsPeriodRows=allRows.filter(common);
       activePeriod={from:from,to:to,compareFrom:compareFrom,compareTo:compareTo,currentYear:year,compareYear:compareYear};
       qs("filterSummary").innerHTML="<strong>"+year+" selected period</strong> · "+displayDate(from)+" to "+displayDate(to)+" · "+formatNumber(filteredRows.length)+" reports · compared with the same dates in "+compareYear;
       qs("currentLegend").textContent=String(year); qs("compareLegend").textContent=String(compareYear);
+      qs("filterSummary").innerHTML="<strong>"+year+" selected period</strong> · "+displayDate(from)+" to "+displayDate(to)+" · "+formatNumber(filteredRows.length)+" reports"+(compareYear?" · compared with the same dates in "+compareYear:"");
+      qs("currentLegend").textContent=String(year);qs("compareLegend").textContent=compareYear?String(compareYear):"";qs("compareLegendItem").hidden=!compareYear;
       commentLimit=30;
       renderAll(from,to,compareFrom,compareTo);
     }
@@ -474,19 +570,29 @@
     }
     function renderKPIs() {
       var current=totals(filteredRows),previous=totals(comparisonRows),grid=qs("kpiGrid");grid.textContent="";
+      var current=totals(filteredRows),previous=totals(comparisonRows),hasComparison=Boolean(activePeriod.compareYear),grid=qs("kpiGrid");grid.textContent="";
       metricDefinitions.forEach(function(metric){
         var currentValue=current[metric.key],previousValue=previous[metric.key],mainValue,compareText;
         if(metric.key==="all_years_registrations"){
           mainValue=sum(allYearsPeriodRows,"registrations");currentValue=current.registrations;previousValue=previous.registrations;
           compareText=activePeriod.currentYear+": "+formatNumber(currentValue)+" · "+activePeriod.compareYear+": "+formatNumber(previousValue);
+          mainValue=sum(allYearsPeriodRows,"registrations");currentValue=mainValue;previousValue=0;
+          compareText=availableYears().map(function(year){
+            var rows=allYearsPeriodRows.filter(function(row){return Number(row.activity_date.slice(0,4))===year;});
+            return year+": "+formatNumber(sum(rows,"registrations"));
+          }).join(" · ");
         }else if(metric.key==="transformation_rate"){
           currentValue=safeRate(current.registrations,current.pax_stopped-current.already_members);
           previousValue=safeRate(previous.registrations,previous.pax_stopped-previous.already_members);
           mainValue=currentValue;compareText=formatPercent(previousValue)+" in "+activePeriod.compareYear;
+          mainValue=currentValue;compareText=hasComparison?formatPercent(previousValue)+" in "+activePeriod.compareYear:"No prior-year data";
         }else{
           mainValue=currentValue;compareText=formatNumber(previousValue)+" in "+activePeriod.compareYear;
+          mainValue=currentValue;compareText=hasComparison?formatNumber(previousValue)+" in "+activePeriod.compareYear:"No prior-year data";
         }
         var delta=changeInfo(currentValue,previousValue,metric.good);
+        var allYearsCount=new Set(allYearsPeriodRows.map(function(row){return row.activity_date.slice(0,4);})).size;
+        var delta=metric.key==="all_years_registrations"?{text:allYearsCount+" years",cls:"neutral"}:hasComparison?changeInfo(currentValue,previousValue,metric.good):{text:"No prior year",cls:"neutral"};
         var card=document.createElement("article");card.className="kpi-card";card.style.setProperty("--card-color",metric.color);
         var label=document.createElement("div");label.className="kpi-label";label.textContent=metric.label;
         var value=document.createElement("div");value.className="kpi-value";value.textContent=metric.rate?formatPercent(mainValue):formatNumber(mainValue);
@@ -579,6 +685,7 @@
       return {labels:labels,values:values};
     }
     function alignComparison(rows,currentLabels,key,average,compareYear) {
+      if(!compareYear)return [];
       var buckets=new Map();rows.forEach(function(row){
         var bucket=buckets.get(row.activity_date)||{sum:0,weight:0};
         if(average){var w=row.interactions||1;bucket.sum+=num(row[key])*w;bucket.weight+=w;}else bucket.sum+=num(row[key]);
@@ -608,8 +715,10 @@
     }
     function drawAreaChart(canvas,labels,values) {
       var dims=prepareCanvas(canvas,180),ctx=dims.ctx,w=dims.width,h=dims.height,pad={l:34,r:10,t:10,b:25},cw=w-44,ch=h-35,max=100;
+      var dims=prepareCanvas(canvas,150),ctx=dims.ctx,w=dims.width,h=dims.height,pad={l:44,r:10,t:10,b:25},cw=w-pad.l-pad.r,ch=h-35,max=100;
       ctx.clearRect(0,0,w,h);
       [0,50,100].forEach(function(v){var y=pad.t+ch-v/max*ch;ctx.strokeStyle="#eee7eb";ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle="#8a7f87";ctx.font="9px system-ui";ctx.textAlign="right";ctx.fillText(v,pad.l-6,y+3);});
+      [0,50,100].forEach(function(v){var y=pad.t+ch-v/max*ch;var label=v===0?"Quiet":v===100?"Peak":"50";ctx.strokeStyle="#eee7eb";ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle="#8a7f87";ctx.font="9px system-ui";ctx.textAlign="right";ctx.fillText(label,pad.l-6,y+3);});
       if(!values.length)return;ctx.beginPath();values.forEach(function(v,i){var x=pad.l+(values.length===1?0:cw*i/(values.length-1)),y=pad.t+ch-v/max*ch;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});
       ctx.lineTo(pad.l+cw,pad.t+ch);ctx.lineTo(pad.l,pad.t+ch);ctx.closePath();var grad=ctx.createLinearGradient(0,pad.t,0,pad.t+ch);grad.addColorStop(0,"rgba(120,22,61,.33)");grad.addColorStop(1,"rgba(120,22,61,.02)");ctx.fillStyle=grad;ctx.fill();
       ctx.beginPath();values.forEach(function(v,i){var x=pad.l+(values.length===1?0:cw*i/(values.length-1)),y=pad.t+ch-v/max*ch;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.strokeStyle="#78163d";ctx.lineWidth=2.4;ctx.stroke();
@@ -619,9 +728,12 @@
       var trend=dateSeries(filteredRows,from,to,"interactions",false);
       var compare=alignComparison(comparisonRows,trend.labels,"interactions",false,Number(qs("compareYearFilter").value));
       drawLineChart(qs("trendChart"),trend.labels,trend.values,compare,{height:310});
+      var compare=alignComparison(comparisonRows,trend.labels,"interactions",false,activePeriod.compareYear);
+      drawLineChart(qs("trendChart"),trend.labels,trend.values,compare,{height:250});
       var traffic=dateSeries(filteredRows,from,to,"traffic_density",true);
       drawAreaChart(qs("trafficChart"),traffic.labels,traffic.values);
       var avg=weightedAverage(filteredRows,"traffic_density","interactions");qs("trafficAverage").textContent=avg.toFixed(1)+"/100";
+      var avg=weightedAverage(filteredRows,"traffic_density","interactions");var density=avg<34?"Quiet":avg>66?"Peak":"Moderate";qs("trafficAverage").textContent=avg.toFixed(1)+" · "+density;
     }
 
     function rowsWithComments() {
@@ -630,6 +742,7 @@
         var has=category==="all"?commentFields.some(function(field){return row[field.key];}):Boolean(row[category]);
         if(!has)return false;if(!search)return true;
         var hay=[row.source_promoter,row.source_store,storeName(row.store_id),row.activity_date].concat(commentFields.map(function(field){return row[field.key];})).join(" ").toLocaleLowerCase();
+        var hay=[row.source_store,storeName(row.store_id),row.activity_date].concat(commentFields.map(function(field){return row[field.key];})).join(" ").toLocaleLowerCase();
         return hay.indexOf(search)>-1;
       }).sort(function(a,b){return b.activity_date.localeCompare(a.activity_date)||b.id-a.id;});
     }
@@ -640,6 +753,7 @@
         var card=document.createElement("article");card.className="comment-card";
         var meta=document.createElement("div");meta.className="comment-meta";
         [displayDate(row.activity_date),storeName(row.store_id),row.source_store,row.source_promoter].forEach(function(value){var span=document.createElement("span");span.textContent=value;meta.appendChild(span);});card.appendChild(meta);
+        [displayDate(row.activity_date),storeName(row.store_id),row.source_store].forEach(function(value){var span=document.createElement("span");span.textContent=value;meta.appendChild(span);});card.appendChild(meta);
         commentFields.forEach(function(field){if(!row[field.key])return;var box=document.createElement("div");box.className="comment-field";var label=document.createElement("b");label.textContent=field.label;var text=document.createElement("p");text.textContent=row[field.key];box.appendChild(label);box.appendChild(text);card.appendChild(box);});
         list.appendChild(card);
       });
@@ -668,6 +782,8 @@
     qs("exportButton").addEventListener("click",exportCsv);
     qs("resetButton").addEventListener("click",function(){qs("storeFilter").value="";qs("compareYearFilter").value="";qs("dateFrom").value="";qs("dateTo").value="";buildFilters();applyFilters();});
     qs("compareYearFilter").addEventListener("change",applyFilters);
+    qs("resetButton").addEventListener("click",function(){qs("storeFilter").value="";qs("yearFilter").value="";qs("dateFrom").value="";qs("dateTo").value="";buildFilters();applyFilters();});
+    qs("yearFilter").addEventListener("change",function(){configureDateInputs(Number(qs("yearFilter").value),true);applyFilters();});
     qs("storeFilter").addEventListener("change",applyFilters);
     ["dateFrom","dateTo"].forEach(function(id){qs(id).addEventListener("change",applyFilters);});
     qs("commentSearch").addEventListener("input",function(){commentLimit=30;renderComments();});
