@@ -3,29 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#2b0820">
+  <meta name="theme-color" content="#211c20">
   <meta name="description" content="Club Avolta performance dashboard for Globe Travel Retail Switzerland.">
   <meta name="dashboard-function" content="https://qooytgsjjzvkqaumoqmw.supabase.co/functions/v1/club-avolta-dashboard-api">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b0820'/%3E%3Cpath d='M16 18h32v8H16zm0 14h23v7H16zm0 13h29v5H16z' fill='%23f3ad23'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23211c20'/%3E%3Cpath d='M16 18h32v8H16zm0 14h23v7H16zm0 13h29v5H16z' fill='%23cb0d61'/%3E%3C/svg%3E">
   <title>Club Avolta · Performance Dashboard</title>
   <style>
     :root {
       color-scheme: light;
-      --ink:#231624;
-      --muted:#766d77;
-      --line:#e8e2e7;
+      --ink:#211c20;
+      --muted:#746c72;
+      --line:#e7e1e4;
       --paper:#fff;
-      --canvas:#f5f3f2;
-      --wine:#4b0929;
-      --wine-2:#78163d;
-      --rose:#bd3d67;
-      --amber:#f2aa20;
-      --amber-soft:#fff3d6;
-      --violet:#6c5ce7;
-      --teal:#168a83;
+      --canvas:#f5f3f4;
+      --charcoal:#211c20;
+      --wine:#211c20;
+      --wine-2:#9a174d;
+      --rose:#cb0d61;
+      --amber:#e7689b;
+      --amber-soft:#fff0f6;
+      --violet:#b9366b;
+      --teal:#5f555b;
       --green:#1d7a52;
       --red:#bb3348;
-      --shadow:0 18px 55px rgba(53,15,39,.09);
+      --shadow:0 18px 55px rgba(33,28,32,.09);
       --radius:18px;
     }
     * { box-sizing:border-box; }
@@ -37,12 +38,12 @@
     .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
 
     .boot { min-height:100vh; display:grid; place-items:center; color:var(--muted); }
-    .spinner { width:34px; height:34px; margin:0 auto 14px; border:3px solid #e5dfe3; border-top-color:var(--wine); border-radius:50%; animation:spin .8s linear infinite; }
+    .spinner { width:34px; height:34px; margin:0 auto 14px; border:3px solid #e5dfe3; border-top-color:var(--rose); border-radius:50%; animation:spin .8s linear infinite; }
     @keyframes spin { to { transform:rotate(360deg); } }
 
     .auth-page { min-height:100vh; display:grid; place-items:center; padding:24px; background:
-      radial-gradient(circle at 20% 20%, rgba(242,170,32,.18), transparent 30%),
-      radial-gradient(circle at 85% 75%, rgba(120,22,61,.14), transparent 32%), #f8f6f5; }
+      radial-gradient(circle at 20% 20%, rgba(203,13,97,.12), transparent 30%),
+      radial-gradient(circle at 85% 75%, rgba(33,28,32,.10), transparent 32%), #f8f6f7; }
     .auth-card { width:min(440px,100%); padding:40px; border:1px solid rgba(75,9,41,.12); border-radius:30px; background:rgba(255,255,255,.94); box-shadow:0 28px 80px rgba(54,17,41,.14); }
     .auth-kicker { color:var(--wine-2); font-size:12px; font-weight:900; letter-spacing:.18em; text-transform:uppercase; }
     .auth-card h1 { margin:10px 0 8px; font-size:clamp(32px,8vw,48px); line-height:1; letter-spacing:-.05em; }
@@ -68,10 +69,15 @@
     .ghost-button,.soft-button { min-height:38px; padding:8px 12px; border:1px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); font-size:12px; font-weight:850; text-decoration:none; }
     .soft-button { border-color:transparent; background:#f0ebee; }
     .dashboard { width:min(1600px,100%); margin:auto; padding:clamp(14px,2vw,26px); }
-    .sticky-dashboard-header { position:sticky; top:0; z-index:45; display:grid; grid-template-columns:minmax(210px,.72fr) minmax(0,4fr); gap:14px; align-items:center; margin:0 0 12px; padding:12px; border:1px solid rgba(75,9,41,.1); border-radius:var(--radius); background:rgba(255,255,255,.96); box-shadow:0 14px 38px rgba(53,15,39,.12); backdrop-filter:blur(18px); }
-    .hero { margin:0; }
+    .sticky-dashboard-header { position:sticky; top:0; z-index:45; display:grid; grid-template-columns:minmax(210px,.72fr) minmax(0,4fr); gap:14px; align-items:center; margin:0 0 12px; padding:12px; border:1px solid rgba(33,28,32,.1); border-radius:var(--radius); background:rgba(255,255,255,.96); box-shadow:0 14px 38px rgba(33,28,32,.12); backdrop-filter:blur(18px); }
+    .hero { display:grid; justify-items:center; margin:0; text-align:center; }
     .eyebrow { margin:0 0 8px; color:var(--wine-2); font-size:12px; font-weight:950; letter-spacing:.2em; text-transform:uppercase; }
-    .hero h1 { margin:0; font-size:clamp(22px,1.8vw,28px); line-height:1; letter-spacing:-.05em; white-space:nowrap; }
+    .hero h1 { display:grid; justify-items:center; gap:2px; margin:0; line-height:1; white-space:nowrap; }
+    .hero h1 strong { font-size:clamp(24px,2vw,31px); font-weight:950; letter-spacing:-.045em; }
+    .hero h1 span { font-size:17px; font-weight:750; letter-spacing:-.025em; }
+    .report-by { margin-top:7px; color:var(--muted); font-size:9px; font-weight:950; letter-spacing:.14em; }
+    .report-logo { width:112px; height:39px; overflow:hidden; flex:0 0 auto; }
+    .report-logo img { display:block; width:112px; height:auto; margin-top:-36px; }
     .hero-copy { max-width:430px; color:var(--muted); font-size:14px; line-height:1.6; }
     .live-pill { display:inline-flex; align-items:center; gap:7px; margin-bottom:12px; padding:7px 10px; border-radius:999px; background:#e9f7f1; color:var(--green); font-size:11px; font-weight:900; }
     .live-pill:before { content:""; width:7px; height:7px; border-radius:50%; background:#28a96f; box-shadow:0 0 0 4px rgba(40,169,111,.12); }
@@ -81,13 +87,19 @@
     .filter-grid label { min-width:0; }
     .filter-actions { display:flex; gap:8px; align-items:center; }
     .filter-actions button { flex:1; white-space:nowrap; }
+    .refresh-data-button { display:grid; place-items:center; gap:1px; line-height:1.05; }
+    .refresh-data-button small { color:var(--muted); font-size:9px; font-weight:750; }
+    .refresh-data-button:disabled { cursor:wait; opacity:.7; }
     .sync-line { display:flex; justify-content:space-between; gap:12px; margin-top:8px; color:var(--muted); font-size:12px; }
     .sync-line strong { color:var(--ink); }
 
     .kpi-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:12px 0; }
-    .kpi-card { position:relative; overflow:hidden; min-height:118px; padding:15px; border:1px solid var(--line); border-radius:16px; background:var(--paper); box-shadow:0 10px 35px rgba(48,20,38,.055); }
-    .kpi-card:before { content:""; position:absolute; inset:0 auto 0 0; width:4px; background:var(--card-color,var(--wine-2)); }
+    .kpi-card { position:relative; overflow:visible; min-height:118px; padding:15px; border:1px solid var(--line); border-radius:16px; background:var(--paper); box-shadow:0 10px 35px rgba(33,28,32,.055); }
     .kpi-label { color:var(--muted); font-size:12px; font-weight:850; text-transform:uppercase; letter-spacing:.07em; }
+    .kpi-label-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .info-tip { position:relative; width:22px; height:22px; display:grid; flex:0 0 auto; place-items:center; border:1px solid #ddd4da; border-radius:50%; background:#fff; color:var(--wine-2); cursor:help; font-size:12px; font-weight:950; }
+    .info-tip:after { content:attr(data-tooltip); position:absolute; z-index:20; top:calc(100% + 8px); right:0; width:min(265px,72vw); padding:10px 12px; border-radius:11px; background:#28151f; color:#fff; box-shadow:0 12px 34px rgba(34,13,25,.22); font-size:11px; font-weight:650; letter-spacing:0; line-height:1.45; text-align:left; text-transform:none; opacity:0; pointer-events:none; transform:translateY(-4px); transition:opacity .14s ease,transform .14s ease; }
+    .info-tip:hover:after,.info-tip:focus-visible:after { opacity:1; transform:translateY(0); }
     .kpi-value { margin:9px 0 7px; font-size:clamp(27px,3vw,40px); line-height:1; font-weight:950; letter-spacing:-.05em; }
     .kpi-foot { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:6px 8px; color:var(--muted); font-size:11px; line-height:1.35; }
     .kpi-foot > span:first-child { min-width:0; }
@@ -97,7 +109,7 @@
     .change.neutral { background:#f2eef1; color:#655864; }
 
     .grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:10px; align-items:start; margin-bottom:10px; }
-    .panel { min-width:0; padding:15px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:0 10px 35px rgba(48,20,38,.05); }
+    .panel { min-width:0; padding:15px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:0 10px 35px rgba(33,28,32,.05); }
     .span-8 { grid-column:span 8; } .span-7 { grid-column:span 7; } .span-6 { grid-column:span 6; }
     .span-5 { grid-column:span 5; } .span-4 { grid-column:span 4; }
     .panel-head { display:flex; align-items:start; justify-content:space-between; gap:12px; margin-bottom:11px; }
@@ -115,9 +127,9 @@
     .funnel { display:grid; gap:10px; margin-top:12px; }
     .funnel-row { display:grid; grid-template-columns:105px 1fr 125px; gap:8px; align-items:center; font-size:12px; }
     .funnel-track { height:24px; overflow:hidden; border-radius:7px; background:#f1edef; }
-    .funnel-fill { height:100%; min-width:3px; border-radius:8px; background:var(--wine); transition:width .35s ease; }
+    .funnel-fill { height:100%; min-width:3px; border-radius:8px; background:var(--charcoal); transition:width .35s ease; }
     .funnel-row:nth-child(2) .funnel-fill { background:var(--wine-2); }
-    .funnel-row:nth-child(3) .funnel-fill { background:var(--amber); }
+    .funnel-row:nth-child(3) .funnel-fill { background:var(--rose); }
     .funnel-value { text-align:right; font-weight:900; }
 
     .stacked { display:flex; height:38px; overflow:hidden; margin:14px 0 11px; border-radius:10px; background:#f2edef; }
@@ -127,7 +139,7 @@
     .legend-item b { color:var(--ink); }
 
     .donut-layout { display:grid; grid-template-columns:135px 1fr; gap:14px; align-items:center; }
-    .donut { width:126px; height:126px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--wine) 0 var(--female), var(--amber) var(--female) 100%); }
+    .donut { width:126px; height:126px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--rose) 0 var(--female), var(--charcoal) var(--female) 100%); }
     .donut:after { content:""; width:72px; height:72px; border-radius:50%; background:#fff; }
     .donut-center { position:absolute; text-align:center; }
     .donut-wrap { position:relative; display:grid; place-items:center; }
@@ -181,7 +193,7 @@
       .account,.report-link { display:none; }
       .dashboard { padding:18px 12px 28px; }
       .sticky-dashboard-header { top:0; grid-template-columns:1fr; gap:10px; padding:10px; border-radius:0 0 16px 16px; }
-      .hero { display:block; }
+      .hero { display:grid; }
       .hero h1 { font-size:26px; }
       .hero-copy { margin-top:15px; }
       .filter-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -221,7 +233,9 @@
     <main class="dashboard">
       <header class="sticky-dashboard-header">
         <section class="hero">
-          <h1>Club Avolta Report</h1>
+          <h1 aria-label="Club Avolta Report"><strong>CLUB AVOLTA</strong><span>Report</span></h1>
+          <div class="report-by">BY</div>
+          <div class="report-logo"><img src="./globe-travel-retail.png" alt="Globe Travel Retail"></div>
         </section>
 
         <section class="filter-panel" aria-label="Dashboard filters">
@@ -231,8 +245,8 @@
             <label>To<input id="dateTo" type="date"></label>
             <label>Store<select id="storeFilter"><option value="">All stores</option><option value="48">Basel</option><option value="32465">Zurich L1</option><option value="32466">Zurich L2</option></select></label>
             <div class="filter-actions">
-              <button class="soft-button" id="resetButton" type="button">Reset</button>
-              <button class="soft-button" id="refreshButton" type="button">Refresh</button>
+              <button class="soft-button" id="resetButton" type="button">Reset filters</button>
+              <button class="soft-button refresh-data-button" id="refreshButton" type="button"><span>Refresh data</span><small id="syncStatus">Last refresh —</small></button>
               <button class="ghost-button" id="exportButton" type="button">Export CSV</button>
             </div>
           </div>
@@ -246,7 +260,7 @@
         <article class="panel span-8">
           <div class="panel-head">
             <div><h2>Daily performance</h2><div class="panel-sub">Selected year versus the previous year.</div></div>
-            <div class="legend"><span><i style="background:#4b0929"></i><span id="currentLegend"></span></span><span id="compareLegendItem"><i style="background:#f2aa20"></i><span id="compareLegend"></span></span></div>
+            <div class="legend"><span><i style="background:#211c20"></i><span id="currentLegend"></span></span><span id="compareLegendItem"><i style="background:#cb0d61"></i><span id="compareLegend"></span></span></div>
           </div>
           <div class="chart-wrap"><canvas id="trendChart" role="img" aria-label="Daily interactions trend"></canvas></div>
         </article>
@@ -315,7 +329,7 @@
 
       <footer class="page-footer">
         <div>Club Avolta performance dashboard · Data from the ClubAvolta reporting table</div>
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="live-pill" style="margin:0">Connected to database</span><span id="syncStatus"></span><span class="mini-wordmark">GL<em>●</em>BE</span> · Travel Retail</div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="live-pill" style="margin:0">Connected to database</span><span class="mini-wordmark">GL<em>●</em>BE</span> · Travel Retail</div>
       </footer>
     </main>
   </div>
@@ -337,10 +351,10 @@
     var compactFormat = new Intl.NumberFormat("en-CH", { notation:"compact", maximumFractionDigits:1 });
     var dateFormat = new Intl.DateTimeFormat("en-GB", { day:"2-digit", month:"short", year:"numeric" });
     var metricDefinitions = [
-      {key:"registrations",label:"New memberships",color:"#bd3d67",good:"up"},
-      {key:"already_members",label:"Already members",color:"#6c5ce7",good:"neutral"},
-      {key:"all_years_registrations",label:"New memberships · all years",color:"#168a83",good:"up"},
-      {key:"transformation_rate",label:"Transformation rate",color:"#f2aa20",good:"up",rate:true}
+      {key:"registrations",label:"New memberships",good:"up"},
+      {key:"already_members",label:"Already members",good:"neutral"},
+      {key:"all_years_registrations",label:"New memberships · all years",good:"up"},
+      {key:"transformation_rate",label:"Transformation rate",good:"up",rate:true,tooltip:"New memberships ÷ (Pax stopped − Already members). Example: 50 ÷ (80 − 20) = 83.3%."}
     ];
     var commentFields = [
       {key:"reasons_registration",label:"Registration reason"},
@@ -400,6 +414,10 @@
     function setLoading(show,text) { qs("loadingLayer").hidden=!show; if(text) qs("loadingText").textContent=text; }
 
     async function loadData() {
+      var refreshButton=qs("refreshButton");
+      var previousSyncText=qs("syncStatus").textContent;
+      refreshButton.disabled=true;
+      qs("syncStatus").textContent="Updating…";
       setLoading(true,"Loading live dashboard data…");
       try {
         var response=await dashboardFetch();
@@ -408,13 +426,14 @@
           throw new Error(data.error || "Dashboard data could not be loaded.");
         }
         allRows=(data.rows || []).map(normalizeRow).filter(function(row){return row.activity_date;});
-        qs("syncStatus").textContent="Last refreshed "+new Date(data.generated_at || Date.now()).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+        qs("syncStatus").textContent="Last refresh "+new Date(data.generated_at || Date.now()).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
         buildFilters();
         applyFilters();
       } catch(error) {
+        qs("syncStatus").textContent=previousSyncText==="Last refresh —"?"Refresh failed":previousSyncText;
         showToast(error.message || "Dashboard data could not be loaded.");
         if(!allRows.length) qs("filterSummary").textContent="No data available.";
-      } finally { setLoading(false); }
+      } finally { refreshButton.disabled=false; setLoading(false); }
     }
 
     function availableYears() {
@@ -512,13 +531,15 @@
         }
         var allYearsCount=new Set(allYearsPeriodRows.map(function(row){return row.activity_date.slice(0,4);})).size;
         var delta=metric.key==="all_years_registrations"?{text:allYearsCount+" years",cls:"neutral"}:hasComparison?changeInfo(currentValue,previousValue,metric.good):{text:"No prior year",cls:"neutral"};
-        var card=document.createElement("article");card.className="kpi-card";card.style.setProperty("--card-color",metric.color);
-        var label=document.createElement("div");label.className="kpi-label";label.textContent=metric.label;
+        var card=document.createElement("article");card.className="kpi-card";
+        var labelRow=document.createElement("div");labelRow.className="kpi-label-row";
+        var label=document.createElement("div");label.className="kpi-label";label.textContent=metric.label;labelRow.appendChild(label);
+        if(metric.tooltip){var tip=document.createElement("button");tip.type="button";tip.className="info-tip";tip.textContent="?";tip.dataset.tooltip=metric.tooltip;tip.setAttribute("aria-label",metric.label+": "+metric.tooltip);labelRow.appendChild(tip);}
         var value=document.createElement("div");value.className="kpi-value";value.textContent=metric.rate?formatPercent(mainValue):formatNumber(mainValue);
         var foot=document.createElement("div");foot.className="kpi-foot";
         var compare=document.createElement("span");compare.textContent=compareText;
         var change=document.createElement("span");change.className="change "+delta.cls;change.textContent=delta.text;
-        foot.appendChild(compare);foot.appendChild(change);card.appendChild(label);card.appendChild(value);card.appendChild(foot);grid.appendChild(card);
+        foot.appendChild(compare);foot.appendChild(change);card.appendChild(labelRow);card.appendChild(value);card.appendChild(foot);grid.appendChild(card);
       });
     }
     function renderConversion() {
@@ -541,9 +562,9 @@
     function renderOutcomes() {
       var t=totals(filteredRows);
       var items=[
-        {label:"Registration denials",value:t.registration_denials,color:"#4b0929"},
-        {label:"Already members",value:t.already_members,color:"#6c5ce7"},
-        {label:"Technical issues",value:t.technical_issues,color:"#f2aa20"}
+        {label:"Registration denials",value:t.registration_denials,color:"#211c20"},
+        {label:"Already members",value:t.already_members,color:"#cb0d61"},
+        {label:"Technical issues",value:t.technical_issues,color:"#9a174d"}
       ];
       var total=items.reduce(function(s,x){return s+x.value;},0)||1;var bar=qs("outcomeBar"),legend=qs("outcomeLegend");bar.textContent="";legend.textContent="";
       items.forEach(function(item){
@@ -573,7 +594,7 @@
       return Array.from(map.entries()).map(function(entry){return {label:entry[0],value:entry[1]};}).sort(function(a,b){return b.value-a.value;});
     }
     function renderAge() {
-      var order=["18-25","26-35","36-45","46-55","56+"],colors=["#d986ad","#ca527f","#a82d59","#78163d","#4b0929"];
+      var order=["18-25","26-35","36-45","46-55","56+"],colors=["#d84982","#cb0d61","#ad124f","#7f173f","#211c20"];
       var map=new Map(distribution(filteredRows,"age_groups").map(function(x){return [x.label,x.value];}));
       var total=order.reduce(function(s,k){return s+(map.get(k)||0);},0)||1;var bar=qs("ageBar"),legend=qs("ageLegend");bar.textContent="";legend.textContent="";
       order.forEach(function(label,index){
@@ -627,7 +648,7 @@
         ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineJoin="round";ctx.lineCap="round";ctx.setLineDash(dash||[]);ctx.beginPath();
         values.forEach(function(v,index){var x=pad.l+(values.length===1?0:cw*index/(values.length-1));var y=pad.t+ch-(v/max*ch);if(index===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();ctx.restore();
       }
-      draw(seriesB,"#f2aa20",2,[5,4]);draw(seriesA,"#4b0929",2.5,[]);
+      draw(seriesB,"#cb0d61",2,[5,4]);draw(seriesA,"#211c20",2.5,[]);
       ctx.fillStyle="#8a7f87";ctx.textAlign="center";ctx.textBaseline="top";
       var step=Math.max(1,Math.ceil(labels.length/6));
       labels.forEach(function(label,index){if(index%step===0 || index===labels.length-1){var x=pad.l+(labels.length===1?0:cw*index/(labels.length-1));ctx.fillText(label.slice(5),x,h-pad.b+9);}});
@@ -637,8 +658,8 @@
       ctx.clearRect(0,0,w,h);
       [0,50,100].forEach(function(v){var y=pad.t+ch-v/max*ch;var label=v===0?"Quiet":v===100?"Peak":"50";ctx.strokeStyle="#eee7eb";ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle="#8a7f87";ctx.font="9px system-ui";ctx.textAlign="right";ctx.fillText(label,pad.l-6,y+3);});
       if(!values.length)return;ctx.beginPath();values.forEach(function(v,i){var x=pad.l+(values.length===1?0:cw*i/(values.length-1)),y=pad.t+ch-v/max*ch;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});
-      ctx.lineTo(pad.l+cw,pad.t+ch);ctx.lineTo(pad.l,pad.t+ch);ctx.closePath();var grad=ctx.createLinearGradient(0,pad.t,0,pad.t+ch);grad.addColorStop(0,"rgba(120,22,61,.33)");grad.addColorStop(1,"rgba(120,22,61,.02)");ctx.fillStyle=grad;ctx.fill();
-      ctx.beginPath();values.forEach(function(v,i){var x=pad.l+(values.length===1?0:cw*i/(values.length-1)),y=pad.t+ch-v/max*ch;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.strokeStyle="#78163d";ctx.lineWidth=2.4;ctx.stroke();
+      ctx.lineTo(pad.l+cw,pad.t+ch);ctx.lineTo(pad.l,pad.t+ch);ctx.closePath();var grad=ctx.createLinearGradient(0,pad.t,0,pad.t+ch);grad.addColorStop(0,"rgba(203,13,97,.28)");grad.addColorStop(1,"rgba(203,13,97,.02)");ctx.fillStyle=grad;ctx.fill();
+      ctx.beginPath();values.forEach(function(v,i){var x=pad.l+(values.length===1?0:cw*i/(values.length-1)),y=pad.t+ch-v/max*ch;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.strokeStyle="#cb0d61";ctx.lineWidth=2.4;ctx.stroke();
       ctx.fillStyle="#8a7f87";ctx.font="9px system-ui";ctx.textAlign="center";var step=Math.max(1,Math.ceil(labels.length/5));labels.forEach(function(l,i){if(i%step===0||i===labels.length-1)ctx.fillText(l.slice(5),pad.l+(labels.length===1?0:cw*i/(labels.length-1)),h-10);});
     }
     function renderCharts(from,to,compareFrom,compareTo) {
@@ -665,7 +686,7 @@
       rows.slice(0,commentLimit).forEach(function(row){
         var card=document.createElement("article");card.className="comment-card";
         var meta=document.createElement("div");meta.className="comment-meta";
-        [displayDate(row.activity_date),storeName(row.store_id),row.source_store].forEach(function(value){var span=document.createElement("span");span.textContent=value;meta.appendChild(span);});card.appendChild(meta);
+        [displayDate(row.activity_date),storeName(row.store_id)].forEach(function(value){var span=document.createElement("span");span.textContent=value;meta.appendChild(span);});card.appendChild(meta);
         commentFields.forEach(function(field){if(!row[field.key])return;var box=document.createElement("div");box.className="comment-field";var label=document.createElement("b");label.textContent=field.label;var text=document.createElement("p");text.textContent=row[field.key];box.appendChild(label);box.appendChild(text);card.appendChild(box);});
         list.appendChild(card);
       });
