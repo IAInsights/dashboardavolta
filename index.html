@@ -4,10 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#211c20">
-  <meta name="description" content="Club Avolta performance dashboard for Globe Travel Retail Switzerland.">
+  <meta name="description" content="Club Avolta × Globe performance dashboard for Globe Travel Retail Switzerland.">
+  <meta name="application-name" content="Club Avolta × Globe Dashboard">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Avolta × Globe">
   <meta name="dashboard-function" content="https://qooytgsjjzvkqaumoqmw.supabase.co/functions/v1/club-avolta-dashboard-api">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23211c20'/%3E%3Cpath d='M16 18h32v8H16zm0 14h23v7H16zm0 13h29v5H16z' fill='%23cb0d61'/%3E%3C/svg%3E">
-  <title>Club Avolta · Performance Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <title>Club Avolta × Globe Dashboard</title>
   <style>
     :root {
       color-scheme: light;
@@ -76,8 +82,9 @@
     .hero h1 strong { font-size:clamp(24px,2vw,31px); font-weight:950; letter-spacing:-.045em; }
     .hero h1 span { font-size:17px; font-weight:750; letter-spacing:-.025em; }
     .report-by { margin-top:7px; color:var(--muted); font-size:9px; font-weight:950; letter-spacing:.14em; }
-    .report-logo { width:112px; height:39px; overflow:hidden; flex:0 0 auto; }
-    .report-logo img { display:block; width:112px; height:auto; margin-top:-36px; }
+    .report-logo { display:flex; align-items:center; gap:6px; color:#211c20; font-size:18px; font-weight:950; letter-spacing:.08em; }
+    .report-logo .logo-dot { width:18px; height:18px; border-radius:50%; background:#cb0d61; }
+    .report-logo small { color:#cb0d61; font-size:8px; font-weight:900; letter-spacing:.16em; }
     .hero-copy { max-width:430px; color:var(--muted); font-size:14px; line-height:1.6; }
     .live-pill { display:inline-flex; align-items:center; gap:7px; margin-bottom:12px; padding:7px 10px; border-radius:999px; background:#e9f7f1; color:var(--green); font-size:11px; font-weight:900; }
     .live-pill:before { content:""; width:7px; height:7px; border-radius:50%; background:#28a96f; box-shadow:0 0 0 4px rgba(40,169,111,.12); }
@@ -108,10 +115,12 @@
     .change.bad { background:#fff0f2; color:var(--red); }
     .change.neutral { background:#f2eef1; color:#655864; }
 
-    .grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:10px; align-items:start; margin-bottom:10px; }
-    .panel { min-width:0; padding:15px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:0 10px 35px rgba(33,28,32,.05); }
-    .span-8 { grid-column:span 8; } .span-7 { grid-column:span 7; } .span-6 { grid-column:span 6; }
-    .span-5 { grid-column:span 5; } .span-4 { grid-column:span 4; }
+    .dashboard-row { display:grid; gap:10px; align-items:stretch; margin-bottom:10px; }
+    .row-three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .row-two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .row-asymmetric { grid-template-columns:minmax(0,2fr) minmax(290px,1fr); }
+    .row-performance { grid-template-columns:minmax(0,2fr) minmax(250px,1fr) minmax(250px,1fr); }
+    .panel { min-width:0; height:100%; padding:15px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:0 10px 35px rgba(33,28,32,.05); }
     .panel-head { display:flex; align-items:start; justify-content:space-between; gap:12px; margin-bottom:11px; }
     .panel h2 { margin:0; font-size:16px; letter-spacing:-.02em; }
     .panel-sub { margin-top:4px; color:var(--muted); font-size:11px; line-height:1.45; }
@@ -131,6 +140,15 @@
     .funnel-row:nth-child(2) .funnel-fill { background:var(--wine-2); }
     .funnel-row:nth-child(3) .funnel-fill { background:var(--rose); }
     .funnel-value { text-align:right; font-weight:900; }
+
+    .store-performance { display:grid; gap:10px; }
+    .store-chart-legend { display:flex; flex-wrap:wrap; gap:6px 9px; color:var(--muted); font-size:8px; font-weight:800; }
+    .store-chart-legend i { display:inline-block; width:7px; height:7px; margin-right:4px; border-radius:2px; }
+    .store-horizontal-chart { display:grid; gap:14px; padding-top:3px; }
+    .store-horizontal-row { display:grid; gap:5px; min-width:0; }
+    .store-horizontal-label { overflow:hidden; color:var(--ink); font-size:10px; font-weight:900; text-overflow:ellipsis; white-space:nowrap; }
+    .store-horizontal-track { display:flex; width:100%; height:28px; overflow:hidden; border-radius:8px; background:#f2edef; }
+    .store-horizontal-segment { display:flex; min-width:0; align-items:center; justify-content:center; overflow:hidden; color:#fff; font-size:8px; font-weight:900; line-height:1; text-shadow:0 1px 1px rgba(0,0,0,.2); white-space:nowrap; transition:width .3s ease; }
 
     .stacked { display:flex; height:38px; overflow:hidden; margin:14px 0 11px; border-radius:10px; background:#f2edef; }
     .stacked-segment { display:grid; place-items:center; min-width:0; color:#fff; font-size:10px; font-weight:900; transition:width .35s ease; }
@@ -184,9 +202,14 @@
       .sticky-dashboard-header { grid-template-columns:minmax(190px,.65fr) minmax(0,3fr); }
       .filter-grid { grid-template-columns:repeat(4,minmax(105px,1fr)); }
       .filter-actions { grid-column:1/-1; }
+    }
+    @media (max-width:1100px) {
+      .row-performance { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .row-performance .daily-panel { grid-column:1/-1; }
+    }
+    @media (max-width:900px) {
+      .row-three { grid-template-columns:1fr; }
       .kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .span-8,.span-7 { grid-column:span 12; }
-      .span-5,.span-4 { grid-column:span 6; }
     }
     @media (max-width:760px) {
       .topbar { padding:10px 14px; }
@@ -201,7 +224,9 @@
       .kpi-grid { grid-template-columns:1fr 1fr; }
       .kpi-card { min-height:126px; padding:15px; }
       .kpi-value { font-size:29px; }
-      .span-6,.span-5,.span-4 { grid-column:span 12; }
+      .row-two { grid-template-columns:1fr; }
+      .row-asymmetric,.row-performance { grid-template-columns:1fr; }
+      .row-performance .daily-panel { grid-column:auto; }
       .comments-list { grid-template-columns:1fr; }
       .comments-tools { grid-template-columns:1fr; }
       .chart-wrap { height:220px; }
@@ -233,9 +258,7 @@
     <main class="dashboard">
       <header class="sticky-dashboard-header">
         <section class="hero">
-          <h1 aria-label="Club Avolta Report"><strong>CLUB AVOLTA</strong><span>Report</span></h1>
-          <div class="report-by">BY</div>
-          <div class="report-logo"><img src="./globe-travel-retail.png" alt="Globe Travel Retail"></div>
+          <h1 aria-label="Club Avolta × Globe Dashboard"><strong>CLUB AVOLTA</strong><span>× GLOBE DASHBOARD</span></h1>
         </section>
 
         <section class="filter-panel" aria-label="Dashboard filters">
@@ -256,8 +279,21 @@
 
       <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
 
-      <section class="grid">
-        <article class="panel span-8">
+      <section class="dashboard-row row-asymmetric" aria-label="Operational overview">
+        <article class="panel">
+          <div class="panel-head"><div><h2>Breakdown of refusals</h2><div class="panel-sub">Registration denials, already members and technical issues.</div></div></div>
+          <div class="stacked" id="outcomeBar"></div>
+          <div class="breakdown-legend" id="outcomeLegend"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><h2>Conversion journey</h2><div class="panel-sub">Performance for the selected dates and store.</div></div></div>
+          <div class="funnel" id="funnel"></div>
+        </article>
+      </section>
+
+      <section class="dashboard-row row-performance" aria-label="Daily, store and traffic performance">
+        <article class="panel daily-panel">
           <div class="panel-head">
             <div><h2>Daily performance</h2><div class="panel-sub">Selected year versus the previous year.</div></div>
             <div class="legend"><span><i style="background:#211c20"></i><span id="currentLegend"></span></span><span id="compareLegendItem"><i style="background:#cb0d61"></i><span id="compareLegend"></span></span></div>
@@ -265,23 +301,19 @@
           <div class="chart-wrap"><canvas id="trendChart" role="img" aria-label="Daily interactions trend"></canvas></div>
         </article>
 
-        <article class="panel span-4">
-          <div class="panel-head"><div><h2>Conversion journey</h2><div class="panel-sub">Performance for the selected dates and store.</div></div></div>
-          <div class="funnel" id="funnel"></div>
+        <article class="panel">
+          <div class="panel-head"><div><h2>Store performance</h2><div class="panel-sub">Interactions, pax stopped and memberships by store.</div></div></div>
+          <div class="store-performance" id="storePerformance"></div>
         </article>
 
-        <article class="panel span-6">
-          <div class="panel-head"><div><h2>Breakdown of refusals</h2><div class="panel-sub">Registration denials, already members and technical issues.</div></div></div>
-          <div class="stacked" id="outcomeBar"></div>
-          <div class="breakdown-legend" id="outcomeLegend"></div>
-        </article>
-
-        <article class="panel span-6">
+        <article class="panel">
           <div class="panel-head"><div><h2>Traffic density</h2><div class="panel-sub">Quiet → Peak.</div></div><strong id="trafficAverage">—</strong></div>
-          <div class="chart-wrap" style="height:150px"><canvas id="trafficChart" role="img" aria-label="Traffic density from quiet to peak"></canvas></div>
+          <div class="chart-wrap"><canvas id="trafficChart" role="img" aria-label="Traffic density from quiet to peak"></canvas></div>
         </article>
+      </section>
 
-        <article class="panel span-4">
+      <section class="dashboard-row row-two" aria-label="Customer profile">
+        <article class="panel">
           <div class="panel-head"><div><h2>Gender distribution</h2><div class="panel-sub">Weighted by pax stopped. 0 = male, 100 = female.</div></div></div>
           <div class="donut-layout">
             <div class="donut-wrap"><div class="donut" id="genderDonut"></div><div class="donut-center"><strong id="femaleCenter">—</strong><span>female</span></div></div>
@@ -289,18 +321,20 @@
           </div>
         </article>
 
-        <article class="panel span-8">
+        <article class="panel">
           <div class="panel-head"><div><h2>Age profile</h2><div class="panel-sub">Estimated mix across selected age groups, weighted by pax stopped.</div></div></div>
           <div class="age-bar" id="ageBar"></div>
           <div class="age-legend" id="ageLegend"></div>
         </article>
+      </section>
 
-        <article class="panel span-6">
+      <section class="dashboard-row row-two" aria-label="Nationality and destination rankings">
+        <article class="panel">
           <div class="panel-head"><div><h2>Top nationalities</h2><div class="panel-sub">Estimated customer mix for the selected period.</div></div></div>
           <div class="hbars" id="nationalityBars"></div>
         </article>
 
-        <article class="panel span-6">
+        <article class="panel">
           <div class="panel-head"><div><h2>Top destinations</h2><div class="panel-sub">Most frequently reported travel destinations.</div></div></div>
           <div class="hbars" id="destinationBars"></div>
         </article>
@@ -328,7 +362,7 @@
       </section>
 
       <footer class="page-footer">
-        <div>Club Avolta performance dashboard · Data from the ClubAvolta reporting table</div>
+        <div>Club Avolta × Globe Dashboard · Data from the ClubAvolta reporting table</div>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="live-pill" style="margin:0">Connected to database</span><span class="mini-wordmark">GL<em>●</em>BE</span> · Travel Retail</div>
       </footer>
     </main>
@@ -345,7 +379,7 @@
     var comparisonRows = [];
     var allYearsPeriodRows = [];
     var activePeriod = null;
-    var commentLimit = 30;
+    var commentLimit = 4;
     var resizeTimer = null;
     var numberFormat = new Intl.NumberFormat("en-CH", { maximumFractionDigits: 1 });
     var compactFormat = new Intl.NumberFormat("en-CH", { notation:"compact", maximumFractionDigits:1 });
@@ -493,7 +527,7 @@
       activePeriod={from:from,to:to,compareFrom:compareFrom,compareTo:compareTo,currentYear:year,compareYear:compareYear};
       qs("filterSummary").innerHTML="<strong>"+year+" selected period</strong> · "+displayDate(from)+" to "+displayDate(to)+" · "+formatNumber(filteredRows.length)+" reports"+(compareYear?" · compared with the same dates in "+compareYear:"");
       qs("currentLegend").textContent=String(year);qs("compareLegend").textContent=compareYear?String(compareYear):"";qs("compareLegendItem").hidden=!compareYear;
-      commentLimit=30;
+      commentLimit=4;
       renderAll(from,to,compareFrom,compareTo);
     }
 
@@ -558,6 +592,41 @@
         var value=document.createElement("span");value.className="funnel-value";value.textContent=compactFormat.format(item.value)+(Number.isFinite(item.rate)?" · "+formatPercent(item.rate):"");
         row.appendChild(label);row.appendChild(track);row.appendChild(value);funnel.appendChild(row);
       });
+    }
+    function renderStorePerformance() {
+      var container=qs("storePerformance");container.textContent="";
+      var stores=["48","32465","32466"],groups=new Map();
+      filteredRows.forEach(function(row){
+        var key=String(row.store_id==null?"":row.store_id),current=groups.get(key)||{interactions:0,pax_stopped:0,registrations:0};
+        current.interactions+=num(row.interactions);current.pax_stopped+=num(row.pax_stopped);current.registrations+=num(row.registrations);groups.set(key,current);
+      });
+      var visible=stores.filter(function(id){return groups.has(id);});
+      if(!visible.length){var empty=document.createElement("div");empty.className="empty-state";empty.textContent="No store data for this selection.";container.appendChild(empty);return;}
+      var metrics=[
+        {key:"interactions",label:"Interactions",color:"#211c20"},
+        {key:"pax_stopped",label:"Pax stopped",color:"#9a174d"},
+        {key:"registrations",label:"Memberships",color:"#cb0d61"}
+      ];
+      var legend=document.createElement("div");legend.className="store-chart-legend";
+      metrics.forEach(function(metric){
+        var item=document.createElement("span"),dot=document.createElement("i");dot.style.background=metric.color;
+        item.appendChild(dot);item.appendChild(document.createTextNode(metric.label));legend.appendChild(item);
+      });
+      container.appendChild(legend);
+      var chart=document.createElement("div");chart.className="store-horizontal-chart";
+      visible.forEach(function(id){
+        var values=groups.get(id),row=document.createElement("div");row.className="store-horizontal-row";
+        var label=document.createElement("div");label.className="store-horizontal-label";label.textContent=storeName(id);
+        var track=document.createElement("div");track.className="store-horizontal-track";
+        var stackTotal=metrics.reduce(function(total,metric){return total+values[metric.key];},0)||1;
+        metrics.forEach(function(metric){
+          var value=values[metric.key],segment=document.createElement("div");segment.className="store-horizontal-segment";
+          segment.style.width=value/stackTotal*100+"%";segment.style.background=metric.color;segment.textContent=compactFormat.format(value);
+          segment.title=storeName(id)+" · "+metric.label+": "+numberFormat.format(value);segment.setAttribute("aria-label",segment.title);track.appendChild(segment);
+        });
+        row.appendChild(label);row.appendChild(track);chart.appendChild(row);
+      });
+      container.appendChild(chart);
     }
     function renderOutcomes() {
       var t=totals(filteredRows);
@@ -654,7 +723,7 @@
       labels.forEach(function(label,index){if(index%step===0 || index===labels.length-1){var x=pad.l+(labels.length===1?0:cw*index/(labels.length-1));ctx.fillText(label.slice(5),x,h-pad.b+9);}});
     }
     function drawAreaChart(canvas,labels,values) {
-      var dims=prepareCanvas(canvas,150),ctx=dims.ctx,w=dims.width,h=dims.height,pad={l:44,r:10,t:10,b:25},cw=w-pad.l-pad.r,ch=h-35,max=100;
+      var dims=prepareCanvas(canvas,250),ctx=dims.ctx,w=dims.width,h=dims.height,pad={l:44,r:10,t:10,b:25},cw=w-pad.l-pad.r,ch=h-35,max=100;
       ctx.clearRect(0,0,w,h);
       [0,50,100].forEach(function(v){var y=pad.t+ch-v/max*ch;var label=v===0?"Quiet":v===100?"Peak":"50";ctx.strokeStyle="#eee7eb";ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle="#8a7f87";ctx.font="9px system-ui";ctx.textAlign="right";ctx.fillText(label,pad.l-6,y+3);});
       if(!values.length)return;ctx.beginPath();values.forEach(function(v,i){var x=pad.l+(values.length===1?0:cw*i/(values.length-1)),y=pad.t+ch-v/max*ch;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});
@@ -694,7 +763,7 @@
       qs("loadMoreButton").hidden=rows.length<=commentLimit;
     }
     function renderAll(from,to,compareFrom,compareTo) {
-      renderKPIs();renderConversion();renderOutcomes();renderGender();renderAge();
+      renderKPIs();renderOutcomes();renderStorePerformance();renderConversion();renderGender();renderAge();
       renderRanking("nationalityBars",distribution(filteredRows,"nationalities"));
       renderRanking("destinationBars",distribution(filteredRows,"destinations"));
       renderCharts(from,to,compareFrom,compareTo);renderComments();
@@ -705,10 +774,10 @@
     }
     function csvCell(value) { var text=Array.isArray(value)?value.join(" | "):String(value==null?"":value);return '"'+text.replace(/"/g,'""')+'"'; }
     function exportCsv() {
-      var fields=["activity_date","source_promoter","store_id","source_store","interactions","pax_stopped","registrations","already_members","registration_denials","technical_issues","app_downloads","traffic_density","male_customers","age_groups","nationalities","destinations","reasons_registration","reasons_denial","comments_about_app","other_issues"];
+      var fields=["activity_date","promoter_id","store_id","source_store","interactions","pax_stopped","registrations","already_members","registration_denials","technical_issues","app_downloads","traffic_density","male_customers","age_groups","nationalities","destinations","reasons_registration","reasons_denial","comments_about_app","other_issues"];
       var lines=[fields.map(csvCell).join(",")].concat(filteredRows.map(function(row){return fields.map(function(field){return csvCell(row[field]);}).join(",");}));
       var blob=new Blob(["\ufeff"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"});var url=URL.createObjectURL(blob);var link=document.createElement("a");
-      link.href=url;link.download="club-avolta-dashboard-"+(activePeriod?activePeriod.currentYear:"ytd")+"-ytd.csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+      link.href=url;link.download="club-avolta-globe-dashboard-"+(activePeriod?activePeriod.currentYear:"ytd")+"-ytd.csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
     }
 
     qs("refreshButton").addEventListener("click",loadData);
@@ -717,10 +786,13 @@
     qs("yearFilter").addEventListener("change",function(){configureDateInputs(Number(qs("yearFilter").value),true);applyFilters();});
     qs("storeFilter").addEventListener("change",applyFilters);
     ["dateFrom","dateTo"].forEach(function(id){qs(id).addEventListener("change",applyFilters);});
-    qs("commentSearch").addEventListener("input",function(){commentLimit=30;renderComments();});
-    qs("commentCategory").addEventListener("change",function(){commentLimit=30;renderComments();});
-    qs("loadMoreButton").addEventListener("click",function(){commentLimit+=30;renderComments();});
+    qs("commentSearch").addEventListener("input",function(){commentLimit=4;renderComments();});
+    qs("commentCategory").addEventListener("change",function(){commentLimit=4;renderComments();});
+    qs("loadMoreButton").addEventListener("click",function(){commentLimit+=4;renderComments();});
     window.addEventListener("resize",function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(rerenderCharts,130);});
+    if("serviceWorker" in navigator && location.protocol!=="file:") {
+      window.addEventListener("load",function(){navigator.serviceWorker.register("./service-worker.js").catch(function(error){console.warn("Service worker registration failed:",error);});});
+    }
 
     (async function start(){
       qs("boot").hidden=true;
