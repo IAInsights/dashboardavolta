@@ -1,0 +1,19 @@
+{
+  "name": "Club Avolta × Globe Dashboard",
+  "short_name": "Avolta × Globe",
+  "description": "Club Avolta performance dashboard for Globe Travel Retail Switzerland.",
+  "start_url": "./Club%20Avolta%20Dashboard%20-%20Updated.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f4f6",
+  "theme_color": "#211c20",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
